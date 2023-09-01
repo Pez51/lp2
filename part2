@@ -1,0 +1,98 @@
+import java.util.Scanner;
+
+	class PerfilMedico {
+	    private String nombre;
+	    private String apellido;
+	    private char sexo;
+	    private int diaN;
+	    private int mesN;
+	    private int anoN;
+	    private double altura;
+	    private double peso;
+	    
+	    public PerfilMedico(String nombre, String apellido, char sexo, int diaN, int mesN, int anoNa, double altura, double peso) {
+	        this.nombre = nombre;
+	        this.apellido = apellido;
+	        this.sexo = sexo;
+	        this.diaN = diaN;
+	        this.mesN = mesN;
+	        this.anoN = anoN;
+	        this.altura = altura;
+	        this.peso = peso;
+	    }
+	    
+	    public String getnombre() {
+	        return nombre;
+	    }
+	    public String getApellido() {
+	        return apellido;
+	    }
+	    public char getSexo() {
+	        return sexo;
+	    }
+	    public int getDiaN() {
+	        return diaN;
+	    }
+	    public int getMesN() {
+	        return mesN;
+	    }
+	    public int getAnoN() {
+	        return anoN;
+	    }
+	    public double getAltura() {
+	        return altura;
+	    }
+	    public double getPeso() {
+	        return peso;
+	    }
+	    public int Edad(int anoActual) {
+	        return anoActual - anoN;
+	    }
+	    public double FrecuenciaCardiaca(double edad) {
+	        return 208 - 0.7 * edad;
+	    }
+	    public double IMC() {
+	        return peso / Math.pow(altura / 100, 2);
+	    }
+	}
+	public class Main {
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        
+	        System.out.print("---Perfil_Medico_del_Paciente---");
+	        System.out.print("Nombre: ");
+	        String nombre = scanner.nextLine();
+	        System.out.print("Apellido: ");
+	        String apellido = scanner.nextLine();
+	        System.out.print("¿Cual es su genero? (M/F): ");
+	        char sexo = scanner.nextLine().charAt(0);
+	        System.out.print("Ingrese solo su día de nacimiento: ");
+	        int diaN = scanner.nextInt();
+	        System.out.print("Ingrese solo el mes de nacimiento: ");
+	        int mesN = scanner.nextInt();
+	        System.out.print("Ingrese solo el año de nacimiento: ");
+	        int anoN = scanner.nextInt();
+	        System.out.print("Su altura (en cm): ");
+	        double altura = scanner.nextDouble();
+	        System.out.print("Peso (en kg): ");
+	        double peso = scanner.nextDouble();
+	        
+	        PerfilMedico perfil = new PerfilMedico (nombre, apellido, sexo, diaN, mesN, anoN, altura, peso);
+	        
+	        int anoActual = 2023;
+	        int edad = perfil.Edad(anoActual);
+	        double frecuenciaMaxima = perfil.FrecuenciaCardiaca(edad);
+	        double indiceMasaCorporal = perfil.IMC();
+	        
+	        System.out.println("\nInformación del Perfil Médico:");
+	        System.out.println("Nombre: "+ perfil.getnombre() + " " + perfil.getApellido());
+	        System.out.println("Sexo: "+ perfil.getSexo());
+	        System.out.println("Fecha de Nacimiento: " + perfil.getDiaN() + "/" + perfil.getMesN() + "/" + perfil.getAnoN());
+	        System.out.println("Altura: " + perfil.getAltura() + " cm");
+	        System.out.println("Peso: " + perfil.getPeso() + " kg");
+	        
+	        System.out.println("\nEdad: " + edad + " años");
+	        System.out.println("Frecuencia Cardiaca Máxima: " + frecuenciaMaxima + " bpm");
+	        System.out.println("Índice de Masa Corporal: " + indiceMasaCorporal);
+	    }
+	}
